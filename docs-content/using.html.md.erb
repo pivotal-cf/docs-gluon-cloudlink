@@ -1,15 +1,75 @@
 ---
-title: Using YOUR-PRODUCT-NAME
+title: Using Gluon CloudLink Service Broker for PCF
 owner: Partners
 ---
 
-This topic describes how to use YOUR-PRODUCT-NAME.
+This topic describes how to use Gluon CloudLink (GCL) Service Broker for Pivotal Cloud Foundry (PCF).
 
-##<a id='using'></a> Using YOUR-PRODUCT-NAME
+##<a id='using'></a> Using Gluon CloudLink Service Broker
 
-**This topic should include any instructions for how to use the service or dashboard created by the tile. 
-Give procedures for how to perform the different functions offered by your product and provide screenshots where necessary.** 
+Each Gluon CloudLink subscription of the Gluon account that was used when configuring Gluon CloudLink Service Broker
+comes with a single Gluon CloudLink Application. A Plan is created for each GCL Application and made available in the
+Gluon CloudLink Service in the Apps Manager Marketplace. Create a Service Instance and bind it to any application to
+get access to the credentials of the GCL Application.
 
-**You can also use this section to include information about Architecture and Troubleshooting for known errors. 
-If you include a Troubleshooting section, follow the Symptom/Explanation format used in the 
-[Okta Troubleshooting](http://docs.pivotal.io/p-identity/okta/troubleshooting.html) topic**.
+#### Apps Manager Marketplace
+
+In Apps Manager, navigate to the Marketplace and select the Gluon CloudLink Service. Each GCL Application is listed
+as a Plan that can be used to create a Service Instance.
+
+<%= image_tag("gluon-cloudlink-apps-manager-plans.png") %>
+
+Once a Service Instance is bound to an application, the GCL Application credentials will be available from the
+application's environment variables.
+
+<%= image_tag("gluon-cloudlink-application-credentials.png") %>
+
+#### cf CLI
+
+Perform the following steps to access the credentials of a GCL Application:
+
+1. Get a list of the individual plans for the `gluon-cloudlink-service-broker` Service from the Marketplace. Each plan
+   represents an active subscription for a GCL Application.
+
+	<pre class="terminal">
+	$ cf marketplace -s gluon-cloudlink-service-broker
+	Getting service plan information for service gluon-cloudlink-service-broker as admin...
+	OK
+
+	service plan           description                                                   free or paid
+	Gluon CloudLink Demo   Gluon CloudLink Demo - aaXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX   free
+	Devoxx Conference      Devoxx Conference - bbXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX      free
+	</pre>
+
+1. Create a Service Instance for one of the available Plans and bind it to an application.
+
+	<pre class="terminal">
+	$ cf create-service gluon-cloudlink-service-broker "Devoxx Conference" devoxx
+
+	$ cf bind-service hello-world devoxx
+	</pre>
+
+1. Use the `cf env` command to display the credentials of the bound GCL Application:
+
+	<pre class="terminal">
+	$ cf env hello-world
+
+	Getting env variables for app hello-world in org Gluon / space Devoxx as admin...
+	OK
+
+	System-Provided:
+	{
+	 "VCAP_SERVICES": {
+	  "gluon-cloudlink-service-broker": [
+	   {
+	    "credentials": {
+	     "clientKey": "bbXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+	     "clientSecret": "ceXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+	     "hostname": "https://betacloud.gluonhq.com",
+	     "serverKey": "ZTgyNTE..."
+	    },
+	    "label": "gluon-cloudlink-service-broker",
+	    "name": "devoxx",
+	    "plan": "Devoxx Conference",
+	...
+	</pre>
