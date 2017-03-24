@@ -36,17 +36,16 @@ Perform the following steps to access the credentials of a GCL Application:
 	Getting service plan information for service gluon-cloudlink-service-broker as admin...
 	OK
 
-	service plan           description                                                   free or paid
-	Gluon CloudLink Demo   Gluon CloudLink Demo - aaXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX   free
-	Devoxx Conference      Devoxx Conference - bbXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX      free
+	service plan                  description                                                          free or paid
+	Gluon CloudLink Application   Gluon CloudLink Application - 45XXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX   free
 	</pre>
 
 1. Create a Service Instance for one of the available Plans and bind it to an application.
 
 	<pre class="terminal">
-	$ cf create-service gluon-cloudlink-service-broker "Devoxx Conference" devoxx
+	$ cf create-service gluon-cloudlink-service-broker "Gluon CloudLink Application" "Gluon CloudLink App"
 
-	$ cf bind-service hello-world devoxx
+	$ cf bind-service hello-world "Gluon CloudLink App"
 	</pre>
 
 1. Use the `cf env` command to display the credentials of the bound GCL Application:
@@ -54,7 +53,7 @@ Perform the following steps to access the credentials of a GCL Application:
 	<pre class="terminal">
 	$ cf env hello-world
 
-	Getting env variables for app hello-world in org Gluon / space Devoxx as admin...
+	Getting env variables for app hello-world in org Gluon / space My Space as admin...
 	OK
 
 	System-Provided:
@@ -63,13 +62,13 @@ Perform the following steps to access the credentials of a GCL Application:
 	  "gluon-cloudlink-service-broker": [
 	   {
 	    "credentials": {
-	     "clientKey": "bbXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-	     "clientSecret": "ceXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-	     "hostname": "https://betacloud.gluonhq.com",
-	     "serverKey": "ZTgyNTE..."
+	     "clientKey": "45XXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+	     "clientSecret": "3eXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+	     "hostname": "https://cloud.gluonhq.com",
+	     "serverKey": "MHwwDQ..."
 	    },
 	    "label": "gluon-cloudlink-service-broker",
-	    "name": "devoxx",
-	    "plan": "Devoxx Conference",
+	    "name": "Gluon CloudLink App",
+	    "plan": "Gluon CloudLink Application",
 	...
 	</pre>
