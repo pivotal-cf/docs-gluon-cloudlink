@@ -3,33 +3,33 @@ title: Using Gluon CloudLink Service Broker for PCF
 owner: Partners
 ---
 
-This topic describes how to use Gluon CloudLink (GCL) Service Broker for Pivotal Cloud Foundry (PCF).
+This topic describes how to use Gluon CloudLink Service Broker for Pivotal Cloud Foundry (PCF).
 
 ##<a id='using'></a> Using Gluon CloudLink Service Broker
 
 Each Gluon CloudLink subscription of the Gluon account that was used when configuring Gluon CloudLink Service Broker
-comes with a single Gluon CloudLink Application. A Plan is created for each GCL Application and made available in the
-Gluon CloudLink Service in the Apps Manager Marketplace. Create a Service Instance and bind it to any application to
-get access to the credentials of the GCL Application.
+comes with a single Gluon CloudLink Application. A Plan is created for each Gluon CloudLink Application and made
+available in the Gluon CloudLink Service in the Apps Manager Marketplace. Create a Service Instance and bind it to any
+application to get access to the credentials of the Gluon CloudLink Application.
 
 #### Apps Manager Marketplace
 
-In Apps Manager, navigate to the Marketplace and select the Gluon CloudLink Service. Each GCL Application is listed
-as a Plan that can be used to create a Service Instance.
+In Apps Manager, navigate to the Marketplace and select the Gluon CloudLink Service. Each Gluon CloudLink Application
+is listed as a Plan that can be used to create a Service Instance.
 
 <%= image_tag("gluon-cloudlink-apps-manager-plans.png") %>
 
-Once a Service Instance is bound to an application, the GCL Application credentials will be available from the
-application's environment variables.
+Once a Service Instance is bound to an application, the Gluon CloudLink Application credentials will be available from
+the application's environment variables.
 
 <%= image_tag("gluon-cloudlink-application-credentials.png") %>
 
 #### cf CLI
 
-Perform the following steps to access the credentials of a GCL Application:
+Perform the following steps to access the credentials of a Gluon CloudLink Application:
 
 1. Get a list of the individual plans for the `gluon-cloudlink-service-broker` Service from the Marketplace. Each plan
-   represents an active subscription for a GCL Application.
+   represents an active subscription for a Gluon CloudLink Application.
 
 	<pre class="terminal">
 	$ cf marketplace -s gluon-cloudlink-service-broker
@@ -48,7 +48,7 @@ Perform the following steps to access the credentials of a GCL Application:
 	$ cf bind-service hello-world "Gluon CloudLink App"
 	</pre>
 
-1. Use the `cf env` command to display the credentials of the bound GCL Application:
+1. Use the `cf env` command to display the credentials of the bound Gluon CloudLink Application:
 
 	<pre class="terminal">
 	$ cf env hello-world
@@ -72,3 +72,8 @@ Perform the following steps to access the credentials of a GCL Application:
 	    "plan": "Gluon CloudLink Application",
 	...
 	</pre>
+
+##<a id='integrating'></a> Integrating Gluon CloudLink
+
+Refer to the Gluon CloudLink documentation at http://docs.gluonhq.com/cloudlink for details on how to integrate
+Gluon CloudLink with your application.
