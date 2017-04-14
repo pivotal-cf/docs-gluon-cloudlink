@@ -7,13 +7,13 @@ This topic describes how to use Gluon CloudLink Service Broker for Pivotal Cloud
 
 ##<a id='intro'></a> Introduction
 
-When a PCF operator installs the Gluon Cloudlink Service Broker for PCF tile, they specific a Gluon account. A Gluon account can have multiple subscriptions, and each subscription is associated with a Gluon Cloudlink app. 
+When a PCF operator installs the Gluon CloudLink Service Broker for PCF tile, they specific a Gluon account. A Gluon account can have multiple subscriptions, and each subscription is associated with a Gluon CloudLink app. 
 
-The Gluon Cloudlink Service Broker for PCF creates a service plan in the Marketplace for each Gluon subscription/app. You can create a service instance based on one of these plans and bind the service to your PCF app.
+The Gluon CloudLink Service Broker for PCF creates a service plan in the Marketplace for each Gluon subscription/app. You can create a service instance based on one of these plans and bind the service to your PCF app.
 
 ##<a id='using'></a> Bind the Service to Your App
 
-Follow the steps below to bind a the Gluon Cloudlink service to your app using either Apps Manager or the Cloud Foundry Command Line Interface (cf CLI).
+Follow the steps below to bind a the Gluon CloudLink service to your app using either Apps Manager or the Cloud Foundry Command Line Interface (cf CLI).
 
 ###<a id='appsman'></a> Create and Bind with Apps Manager
 
@@ -34,7 +34,7 @@ Each Gluon CloudLink app is listed as a Plan.
 
 Follow these steps to create and bind a service instance with the cf CLI.
 
-1. Run `cf marketplace` to list of the plans available for the `gluon-cloudlink-service-broker` service. Each plan
+1. Run `cf marketplace` to list of the plans available for the `gluon-cloudLink-service-broker` service. Each plan
    represents an active subscription for a Gluon CloudLink app.
 
 	<pre class="terminal">
@@ -84,5 +84,5 @@ Follow these steps to create and bind a service instance with the cf CLI.
 
 ##<a id='integrating'></a> Integrate Gluon CloudLink
 
-Now that you have bound your PCF app to the Gluon Cloudlink service, refer to the Gluon CloudLink [documentation](http://docs.gluonhq.com/cloudlink) for details on how to integrate
+Now that you have bound your PCF app to the Gluon CloudLink service, refer to the Gluon CloudLink [documentation](http://docs.gluonhq.com/cloudlink) for details on how to integrate
 Gluon CloudLink with your app.
